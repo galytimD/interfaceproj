@@ -33,13 +33,26 @@ const DatasetDetail = () => {
     setIsDialogVisible(true);
   };
 
- const renderDialog = () => (
-    <Dialog header="Detail of File" visible={isDialogVisible} style={{ width: '50vw' }} onHide={() => setIsDialogVisible(false)}>
+  const renderDialog = () => (
+    <Dialog style={
+      {
+        height:'100%',
+        width:"75%"
+      }
+    } header="Detail of File" visible={isDialogVisible}  maximizable onHide={() => setIsDialogVisible(false)}>
         {selectedFile && (
-            <div>
-              <Image src={`http://127.0.0.1/images/downloads/test-2/${selectedFile.name}`} alt="Dataset Image" />
-
-            </div>
+            
+              <Image src={`http://127.0.0.1/images/downloads/${selectedFile.path}`} alt="Dataset Image"
+              height='700px'
+              width='525px'
+              
+                style={{
+                  display: 'block', // Элемент блочного типа
+                  marginLeft: 'auto', // Выравнивание по центру
+                  marginRight: 'auto',
+                  objectFit:'cover' // Выравнивание по центру
+                }} />
+            
         )}
     </Dialog>
 );
