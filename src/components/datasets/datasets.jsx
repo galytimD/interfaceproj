@@ -61,7 +61,8 @@ const Datasets = () =>  {
             <DataTable value={datasets}
                 dataKey="id" 
                 onRowClick={onRowSelect} // Добавление обработчика клика
-                stripedRows removableSort showGridlines
+                stripedRows removableSort showGridlines 
+                selectionMode="single"
                 tableStyle={{ minWidth: '50rem' }}>
                 <Column field="id" header="id"  style={{ minWidth: '8rem' }} />
                 <Column field="name" header="Name" sortable style={{ minWidth: '8rem' }} />

@@ -24,4 +24,16 @@ export class DatasetService {
       throw error;
     }
   }
+
+  static async deleteFile(datasetId, imageId){
+    try {
+      const response = await axios.delete(`${this.baseUrl}/datasets/${datasetId}/images/${imageId}}`);
+      if (response){
+        return true;
+      }
+    } catch (error) {
+      console.error("Ошибка при удалении файла:", datasetId, error);
+      throw error;
+    }
+  }
 }

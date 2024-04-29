@@ -5,6 +5,7 @@ import Statistics from './components/statistics/statistics';
 import MapPage from './components/map/mapPage';
 import Navbar from './components/navbar/navbar';
 import DatasetDetail from './components/datasets/datasetDeatail/datasetDeatail';
+import './App.css';
 
 function App() {
   return (
