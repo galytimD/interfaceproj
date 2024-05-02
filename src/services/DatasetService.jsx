@@ -24,6 +24,21 @@ export class DatasetService {
       throw error;
     }
   }
+  static async preproccessing_one(dataset_id,width, height, checked) {
+    try {
+      // Отправляем POST запрос с данными инпутов на нужный вам эндпоинт
+      const response = await axios.post(`${this.baseUrl}/datasets/${dataset_id}/update_preprocessing`, {
+        resize:`${width}x${height}`,
+        normalize: checked // Предполагая, что normalize - это чекбокс
+      });
+
+      // Обработка успешного ответа, например, перенаправление пользователя или обновление данных
+      console.log("Успешный ответ:", response.data);
+    } catch (error) {
+      // Обработка ошибок, например, вывод сообщения об ошибке
+      console.error("Ошибка при отправке данных:", error);
+    }
+  }
 
   static async deleteFile(datasetId, imageId){
     try {

@@ -61,15 +61,15 @@ const Datasets = () =>  {
             <DataTable value={datasets}
                 dataKey="id" 
                 onRowClick={onRowSelect} // Добавление обработчика клика
-                stripedRows removableSort showGridlines 
+                removableSort showGridlines 
                 selectionMode="single"
                 tableStyle={{ minWidth: '50rem' }}>
                 <Column field="id" header="id"  style={{ minWidth: '8rem' }} />
-                <Column field="name" header="Name" sortable style={{ minWidth: '8rem' }} />
-                <Column header="Quality" body={qualityBodyTemplate} sortable />
-                <Column header="Status" body={statusBodyTemplate} sortable />
-                <Column field="owner" header="Owner" sortable />
-                <Column field="created_at" header="Created_at" sortable />
+                <Column field="name" header="Название" sortable style={{ minWidth: '8rem' }} />
+                <Column header="Качество" body={qualityBodyTemplate} sortable />
+                <Column header="Статус" body={statusBodyTemplate} sortable />
+                <Column field="createTime" header="Дата" sortable />
+                <Column field="imageCount" header="Количество изображений" sortable />
             </DataTable>
         </div>
     );
