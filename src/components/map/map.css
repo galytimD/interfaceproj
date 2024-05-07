@@ -1,0 +1,12 @@
+.contener{
+    height: 80%;
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: flex-start;
+}
+.element{
+    width:25%;
+    height:"100%";
+}

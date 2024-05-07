@@ -5,11 +5,9 @@ import { DatasetService } from "../../../services/DatasetService";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
-import { InputText } from "primereact/inputtext";
-import { Checkbox } from "primereact/checkbox";
 import "./datasetDetail.css";
-import DialogFileDetail from "../../Dialog/dialogFileDetail";
-import DialogPreprocessingParams from "../../Dialog/dialogPreprocessingParams";
+import DialogFileDetail from "../../dialog/dialogFileDetail";
+import DialogPreprocessingParams from "../../dialog/dialogPreprocessingParams";
 
 const DatasetDetail = () => {
   const { id } = useParams();
@@ -17,7 +15,6 @@ const DatasetDetail = () => {
   const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [isVisible, setVisible] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [size, setSize] = useState("");
   const navigate = useNavigate();
   const [width, setWidth] = useState("");
   const [height, setHeight] = useState("");
@@ -40,14 +37,18 @@ const DatasetDetail = () => {
     setIsDialogVisible(true);
   };
 
-  const deleteFile = () => {
+  const deleteFile = () => {  
     DatasetService.deleteFile(id, selectedFile.id).then(() => {
       setIsDialogVisible(false);
-      setDataFiles(
-        dataFiles.filter((element) => element.id !== selectedFile.id)
-      );
+      const updatedFiles = dataFiles.filter((element) => element.id !== selectedFile.id);
+      setDataFiles(updatedFiles);
+      if (updatedFiles.length === 0) {
+        navigate('/datasets');
+      }
     });
   };
+  
+  
 
   return (
     <div>
@@ -57,14 +58,14 @@ const DatasetDetail = () => {
       </div>
 
       <DataTable
-        className="mt-4"
+        className="mt-4 table"
         value={dataFiles}
         onRowClick={onRowSelect}
         selectionMode="single"
+        paginator rows={20}
       >
         <Column field="id" header="id" sortable></Column>
         <Column field="name" header="Название" sortable></Column>
-        <Column field="created_at" header="Дата съемки" sortable></Column>
         <Column field="coordinates" header="Координаты" sortable></Column>
         <Column field="resolution" header="Разрешение" sortable></Column>
         <Column field="orientation" header="Ориентация" sortable></Column>

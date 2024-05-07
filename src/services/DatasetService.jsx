@@ -51,4 +51,14 @@ export class DatasetService {
       throw error;
     }
   }
+
+  static async getCoordinates(){
+    try {
+      const response = await axios.get(`${this.baseUrl}/images/coordinates`);
+      return response;
+    } catch (error) {
+      console.error("Ошибка при загрузке данных:", error);
+      throw error;
+    }
+  }
 }
