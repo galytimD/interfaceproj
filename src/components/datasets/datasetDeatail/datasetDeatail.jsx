@@ -1,5 +1,5 @@
 // DatasetDetail.jsx
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { DatasetService } from "../../../services/DatasetService";
 import { DataTable } from "primereact/datatable";
@@ -16,21 +16,21 @@ const DatasetDetail = () => {
   const [isVisible, setVisible] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
   const navigate = useNavigate();
-  const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
-  const [checked, setChecked] = useState(false);
-  useEffect(() => {
-    fetchData();
-  }, [id]);
 
-  const fetchData = async () => {
+
+  const fetchData = useCallback(async () => {
     try {
       const response = await DatasetService.getById(id);
       setDataFiles(response.data);
     } catch (error) {
       console.error("Ошибка при получении данных датасета:", error);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
 
   const onRowSelect = (e) => {
     setSelectedFile(e.data);
@@ -76,19 +76,15 @@ const DatasetDetail = () => {
         onHide={() => setIsDialogVisible(false)}
         selectedFile={selectedFile}
         deleteFile={deleteFile}
+        dataset_id={id}
       />
 
       <DialogPreprocessingParams
         isVisible={isVisible}
         onHide={() => setVisible(false)}
         dataFile={dataFiles[0] || {}}
-        width={width}
-        setWidth={setWidth}
-        height={height}
-        setHeight={setHeight}
-        checked={checked}
-        setChecked={setChecked}
-      />
+        dataset_id={id}
+        />
     </div>
   );
 };

@@ -24,21 +24,31 @@ export class DatasetService {
       throw error;
     }
   }
-  static async preproccessing_one(dataset_id,width, height, checked) {
+  static async preprocessing(dataset_id, width, height, checkedRot, checkedMirror, checkedZoom) {
     try {
-      // Отправляем POST запрос с данными инпутов на нужный вам эндпоинт
-      const response = await axios.post(`${this.baseUrl}/datasets/${dataset_id}/update_preprocessing`, {
-        resize:`${width}x${height}`,
-        normalize: checked // Предполагая, что normalize - это чекбокс
-      });
-
-      // Обработка успешного ответа, например, перенаправление пользователя или обновление данных
-      console.log("Успешный ответ:", response.data);
+      const params = {
+        width,
+        height,
+        rotate: checkedRot,
+        mirror: checkedMirror,
+        zoom: checkedZoom,
+        dataset_id: dataset_id
+      };
+  
+      console.log("Отправка данных:", params);
+  
+      const response = await axios.post(`${this.baseUrl}/datasets/preprocessing`, params);
+  
+      console.log("Ответ сервера:", response.data);
+  
+      return response.data;
     } catch (error) {
-      // Обработка ошибок, например, вывод сообщения об ошибке
-      console.error("Ошибка при отправке данных:", error);
+      console.error("Ошибка при отправке данных:", error.response ? error.response.data : error.message);
+      throw error; // Переброс ошибки для дальнейшей обработки
     }
   }
+  
+  
 
   static async deleteFile(datasetId, imageId){
     try {
@@ -55,6 +65,16 @@ export class DatasetService {
   static async getCoordinates(){
     try {
       const response = await axios.get(`${this.baseUrl}/images/coordinates`);
+      return response;
+    } catch (error) {
+      console.error("Ошибка при загрузке данных:", error);
+      throw error;
+    }
+  }
+
+  static async getImagesCount(){
+    try {
+      const response = await axios.get(`${this.baseUrl}/images/count_preproccessed`);
       return response;
     } catch (error) {
       console.error("Ошибка при загрузке данных:", error);

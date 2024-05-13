@@ -39,7 +39,7 @@ const Datasets = () =>  {
         try {
             const response = await DatasetService.getAll();
             setDatasets(response.data);
-            //console.log(response.data)
+            console.log(response.data)
         } catch (error) {
             console.error('Ошибка при получении данных:', error);
         }
@@ -63,13 +63,15 @@ const Datasets = () =>  {
                 onRowClick={onRowSelect} // Добавление обработчика клика
                 removableSort showGridlines 
                 selectionMode="single"
+                sortField="name"
+                sortOrder={-1}
                 paginator rows={20}
                 tableStyle={{ minWidth: '50rem' }}>
                 <Column field="id" header="id"  style={{ minWidth: '8rem' }} />
                 <Column field="name" header="Название" sortable style={{ minWidth: '8rem' }} />
                 <Column header="Качество" body={qualityBodyTemplate} sortable />
                 <Column header="Статус" body={statusBodyTemplate} sortable />
-                <Column field="createTime" header="Дата" sortable />
+                <Column field="create_time" header="Дата" sortable />
                 <Column field="image_count" header="Количество изображений" sortable />
             </DataTable>
         </div>
