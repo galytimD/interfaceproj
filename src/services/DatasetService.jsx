@@ -24,6 +24,11 @@ export class DatasetService {
       throw error;
     }
   }
+  static async getPreprocessed() {
+      const response = await axios.get(`${this.baseUrl}/datasets/preprocessed`);
+      return response;
+   
+  }
   static async preprocessing(dataset_id, width, height, checkedRot, checkedMirror, checkedZoom) {
     try {
       const params = {
@@ -38,6 +43,23 @@ export class DatasetService {
       console.log("Отправка данных:", params);
   
       const response = await axios.post(`${this.baseUrl}/datasets/preprocessing`, params);
+  
+      console.log("Ответ сервера:", response.data);
+  
+      return response.data;
+    } catch (error) {
+      console.error("Ошибка при отправке данных:", error.response ? error.response.data : error.message);
+      throw error; // Переброс ошибки для дальнейшей обработки
+    }
+  }
+  
+  static async upload(name) {
+    try {
+      const params = {project_name: name};
+  
+      console.log("Отправка данных:", params);
+  
+      const response = await axios.post(`${this.baseUrl}/datasets/upload`, params);
   
       console.log("Ответ сервера:", response.data);
   

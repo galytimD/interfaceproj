@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './components/home/home';
+import Preprocessed from './components/preprocessed/preprocessed';
 import Datasets from './components/datasets/datasets';
 import Statistics from './components/statistics/statistics';
 import Navbar from './components/navbar/navbar';
@@ -12,8 +12,8 @@ function App() {
     <BrowserRouter>
     <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/datasets" element={<Datasets />} />
+          <Route path="/" element={<Datasets />} />
+          <Route path="/preprocessed" element={<Preprocessed />} />
           <Route path="/datasets/:id" element={<DatasetDetail/>} />
           <Route path="/statistics" element={<Statistics />} />
           <Route path="/map" element={<MapComponent />} />

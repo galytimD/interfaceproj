@@ -30,7 +30,6 @@ const DialogFileDetail = ({ isVisible, onHide, selectedFile, deleteFile }) => {
             <div className="content__info">
               <p>Координаты: {selectedFile.coordinates}</p>
               <p>Разрешение: {selectedFile.resolution}</p>
-              <p>Orientation: {selectedFile.orientation}</p>
             </div>
             <Button
               onClick={deleteFile}

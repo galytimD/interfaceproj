@@ -7,22 +7,22 @@ const Navbar =  function () {
     const navigate = useNavigate();
     const items = [
         {
-            label: 'Home',
-            icon: 'pi pi-home',
-            command: () => navigate('/')
-        },
-        {
-            label: 'Datasets',
+            label: 'Датасеты',
             icon: 'pi pi-table',
             command: () => navigate('/datasets')
         },
         {
-            label: 'Statistics',
+            label: 'Обработанные изображения',
+            icon: 'pi pi-table',
+            command: () => navigate('/preprocessed')
+        },
+        {
+            label: 'Статистика',
             icon: 'pi pi-chart-scatter',
             command: () => navigate('/statistics')
         },
         {
-            label: 'Map',
+            label: 'Карта',
             icon: 'pi pi-map',
             command: () => navigate('/map')
         }

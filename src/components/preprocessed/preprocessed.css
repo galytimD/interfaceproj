@@ -1,0 +1,14 @@
+.dataset-detail__content{
+    p{
+        margin: 0;
+    }
+}
+.table {
+    
+    background: var(--surface-card);
+    padding:  0.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    
+}
+
