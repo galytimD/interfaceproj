@@ -9,7 +9,7 @@ const Navbar =  function () {
         {
             label: 'Датасеты',
             icon: 'pi pi-table',
-            command: () => navigate('/datasets')
+            command: () => navigate('/')
         },
         {
             label: 'Обработанные изображения',

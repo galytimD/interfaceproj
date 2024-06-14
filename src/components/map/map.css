@@ -1,12 +1,34 @@
-.contener{
-    height: 80%;
-    display: flex;
-
-    flex-direction: row;
-
-    justify-content: flex-start;
+.contener {
+  height: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
-.element{
-    width:25%;
-    height:"100%";
+
+.element {
+  width: 25%;
+  height: 100%;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Занимает место карты */
+  height: 100%; /* Занимает место карты */
+}
+
+/* Новый стиль для интерактивного текста */
+.clickable {
+  cursor: pointer; /* Указатель при наведении */
+}
+
+/* Добавление ховер-эффекта */
+.clickable:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+  font-weight: bold; /* Жирный текст при наведении */
+}
+
+.p-datatable .p-datatable-tbody > tr.p-highlight {
+  background: #dff0d8 !important; /* Цвет выделенной строки */
 }
